@@ -266,7 +266,7 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 persist.vendor.md_c2k_cap_dep_check=0
 vendor.bluetooth.ldac.abr=true
 ro.incremental.enable=yes
-ro.vendor.mtk_bt_bleaudio_enable=true
+ro.vendor.mtk.bt_bleaudio_enable=true
 ro.vendor.touchfeature.type=51
 debug.sf.set_idle_timer_ms=0
 ro.hardware.fp.sideCap=true
@@ -276,10 +276,30 @@ persist.sys.periodic.enable=true
 persist.sys.periodic.fgtrim=true
 persist.sys.periodic.startprocess.enable=true
 
-debug.stagefright.c2inputsurface=-1
-media.c2.dmabuf.padding=3072
+# ==== FIXES ADDED BELOW ====
+
+# Bluetooth device info (from ChatGPT)
 bluetooth.device.default_name=POCO F3 GT
 bluetooth.device.class_of_device=90,2,12
 bluetooth.hardware.power.operating_voltage_mv=3300
-ro.vendor.bt.platform=6893
-ro.vendor.mtk_bt_sap_enable=true
+
+# Fix Bluetooth connectivity (missing profiles)
+bluetooth.profile.a2dp.source.enabled=true
+bluetooth.profile.avrcp.target.enabled=true
+bluetooth.profile.hfp.ag.enabled=true
+bluetooth.profile.gatt.enabled=true
+bluetooth.profile.opp.enabled=true
+bluetooth.profile.pan.panu.enabled=true
+bluetooth.profile.pbap.server.enabled=true
+
+# Fix screen recorder and video playback
+ro.hardware.hwcomposer=mtk_common
+ro.hardware.vulkan=mali
+ro.surface_flinger.set_touch_timer_ms=500
+ro.surface_flinger.set_idle_timer_ms=3000
+ro.surface_flinger.use_content_detection_for_refresh_rate=true
+ro.vendor.wifi.sap.concurrent.iface=ap1
+
+# Media optimizations
+debug.stagefright.c2inputsurface=-1
+media.c2.dmabuf.padding=3072
